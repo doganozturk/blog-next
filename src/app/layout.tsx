@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { ThemeProvider } from "~/components/theme-provider";
 import {
   THEME_COLOR_META_ID,
@@ -59,6 +60,7 @@ export default function RootLayout({
         <ThemeProvider>
           <ThemeContainer>{children}</ThemeContainer>
         </ThemeProvider>
+        <SpeedInsights />
       </body>
     </html>
   );
