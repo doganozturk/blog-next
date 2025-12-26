@@ -1,14 +1,13 @@
-import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 import { formatDistance, Locale } from "./format-distance";
 
 describe("formatDistance", () => {
   beforeEach(() => {
-    vi.useFakeTimers();
-    vi.setSystemTime(new Date("2025-01-15T12:00:00.000Z"));
+    jest.useFakeTimers();
+    jest.setSystemTime(new Date("2025-01-15T12:00:00.000Z"));
   });
 
   afterEach(() => {
-    vi.useRealTimers();
+    jest.useRealTimers();
   });
 
   it("formats date in English by default", () => {

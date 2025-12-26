@@ -14,9 +14,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "vitest",
-    "test:ci": "vitest run",
-    "test:coverage": "vitest run --coverage"
+    "test": "bun test --watch",
+    "test:ci": "bun test",
+    "test:coverage": "bun test --coverage"
   },
   "dependencies": {
     "@mdx-js/loader": "^3.1.0",
@@ -33,20 +33,13 @@
     "remark-mdx-frontmatter": "^5.2.0"
   },
   "devDependencies": {
-    "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.1.0",
     "@testing-library/user-event": "^14.5.2",
+    "@types/bun": "latest",
     "@types/mdx": "^2.0.13",
     "@types/node": "^22.10.5",
     "@types/react": "^19.0.2",
     "@types/react-dom": "^19.0.2",
-    "@vitejs/plugin-react": "^4.3.4",
-    "jsdom": "^26.0.0",
-    "typescript": "~5.7.2",
-    "vite-tsconfig-paths": "^4.2.1",
-    "vitest": "^2.1.9"
-  },
-  "engines": {
-    "node": ">=22.0.0 <23"
+    "typescript": "~5.7.2"
   }
 }
