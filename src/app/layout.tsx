@@ -18,6 +18,13 @@ export const metadata: Metadata = {
   title: "Doğan Öztürk | Blog",
   description:
     "I'm Doğan, a software engineer passionate about front-end development, JavaScript and Node.js. On my blog, I share my expertise and experiences in tech, as well as my interests in role-playing games, computer games, sci-fi and more.",
+  alternates: {
+    canonical: "https://doganozturk.dev",
+    languages: {
+      en: "https://doganozturk.dev",
+      tr: "https://doganozturk.dev/tr/",
+    },
+  },
   icons: {
     apple: "/favicon/apple-touch-icon.png",
     icon: [

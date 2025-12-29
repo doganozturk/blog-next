@@ -14,6 +14,8 @@ export async function generateStaticParams() {
   return slugs.map((slug) => ({ slug }));
 }
 
+export const dynamicParams = false;
+
 export async function generateMetadata({
   params,
 }: PostPageProps): Promise<Metadata> {
@@ -24,11 +26,18 @@ export async function generateMetadata({
     return {};
   }
 
-  const { title, description, permalink } = post.frontmatter;
+  const { title, description, permalink, date } = post.frontmatter;
 
   return {
     title,
     description,
+    alternates: {
+      canonical: `https://doganozturk.dev${permalink}`,
+      languages: {
+        en: `https://doganozturk.dev/${slug}/`,
+        tr: `https://doganozturk.dev/tr/${slug}/`,
+      },
+    },
     twitter: {
       card: "summary",
       site: "Doğan Öztürk | Blog",
@@ -44,6 +53,8 @@ export async function generateMetadata({
       images: ["https://doganozturk.dev/images/avatar.jpg"],
       description,
       siteName: "doganozturk.dev",
+      publishedTime: date,
+      authors: ["Doğan Öztürk"],
     },
   };
 }

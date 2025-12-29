@@ -1,3 +1,4 @@
+import type { Route } from "next";
 import Link from "next/link";
 import { formatDistance, Locale } from "~/util";
 import styles from "./post-summary-list-item.module.css";
@@ -20,7 +21,7 @@ export function PostSummaryListItem({
   const locale = lang === "tr" ? Locale.tr : Locale.en;
 
   return (
-    <Link href={permalink} className={styles.postSummaryListItem} prefetch>
+    <Link href={permalink as Route} className={styles.postSummaryListItem}>
       <h2 className={styles.title}>
         {title}
         <span className={styles.arrow} aria-hidden="true">

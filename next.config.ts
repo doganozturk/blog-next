@@ -1,3 +1,4 @@
+import type { NextConfig } from "next";
 import createMDX from "@next/mdx";
 import path from "path";
 import { fileURLToPath } from "url";
@@ -7,8 +8,7 @@ import rehypePrism from "rehype-prism-plus";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-/** @type {import('next').NextConfig} */
-const nextConfig = {
+const nextConfig: NextConfig = {
   output: "export",
   trailingSlash: true,
   images: {
@@ -16,8 +16,11 @@ const nextConfig = {
   },
   pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
   serverExternalPackages: ["gray-matter"],
+  typedRoutes: true,
+  experimental: {
+    optimizePackageImports: ["date-fns"],
+  },
   webpack: (config) => {
-    // Add alias resolution for MDX files in content directory
     config.resolve.alias = {
       ...config.resolve.alias,
       "~": path.resolve(__dirname, "src"),
