@@ -1,14 +1,8 @@
-import type { NextConfig } from "next";
-import createMDX from "@next/mdx";
-import path from "path";
-import { fileURLToPath } from "url";
-import remarkFrontmatter from "remark-frontmatter";
-import remarkMdxFrontmatter from "remark-mdx-frontmatter";
-import rehypePrism from "rehype-prism-plus";
+const path = require("path");
+const createMDX = require("@next/mdx");
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-
-const nextConfig: NextConfig = {
+/** @type {import('next').NextConfig} */
+const nextConfig = {
   output: "export",
   trailingSlash: true,
   images: {
@@ -20,22 +14,20 @@ const nextConfig: NextConfig = {
   experimental: {
     optimizePackageImports: ["date-fns"],
   },
-  webpack: (config) => {
-    config.resolve.alias = {
-      ...config.resolve.alias,
+  turbopack: {
+    resolveAlias: {
       "~": path.resolve(__dirname, "src"),
       "@": path.resolve(__dirname, "src"),
       "@content": path.resolve(__dirname, "content"),
-    };
-    return config;
+    },
   },
 };
 
 const withMDX = createMDX({
   options: {
-    remarkPlugins: [remarkFrontmatter, remarkMdxFrontmatter],
-    rehypePlugins: [[rehypePrism, { ignoreMissing: true }]],
+    remarkPlugins: ["remark-frontmatter", "remark-mdx-frontmatter"],
+    rehypePlugins: [["rehype-prism-plus", { ignoreMissing: true }]],
   },
 });
 
-export default withMDX(nextConfig);
+module.exports = withMDX(nextConfig);
