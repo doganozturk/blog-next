@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-A personal blog built with Next.js 15, React 19, and MDX. The site is statically exported (SSG) and supports both English and Turkish content.
+A personal blog built with Next.js 16, React 19, and MDX. The site is statically exported (SSG) and supports both English and Turkish content with proper i18n routing.
 
 ## Commands
 
@@ -25,10 +25,13 @@ bun test:coverage    # Generate coverage report
 - Posts loaded via `src/util/posts.ts` using `gray-matter` for frontmatter parsing
 - Custom MDX components registered in `mdx-components.tsx`
 
-### Routing (App Router)
-- English posts: `/[slug]/` → `src/app/[slug]/page.tsx`
-- Turkish posts: `/tr/[slug]/` → `src/app/tr/[slug]/page.tsx`
+### Routing (App Router with i18n)
+- Root `/` redirects to `/en/`
+- English posts: `/en/[slug]/` → `src/app/[lang]/[slug]/page.tsx`
+- Turkish posts: `/tr/[slug]/` → `src/app/[lang]/[slug]/page.tsx`
+- Language-specific layout: `src/app/[lang]/layout.tsx` sets `<html lang>`
 - Static params generated via `generateStaticParams()` and `generateMetadata()`
+- Old English URLs (e.g., `/post-slug/`) redirect to `/en/post-slug/` via Vercel
 
 ### Path Aliases
 ```
@@ -37,9 +40,10 @@ bun test:coverage    # Generate coverage report
 ```
 
 ### Theme System
-- React Context in `src/components/theme-provider.tsx`
+- Uses `next-themes` library for theme management
 - Persisted to localStorage, respects system preference
-- `theme-hack.ts` inline script prevents flash of wrong theme on load
+- No flash of wrong theme (handled by next-themes)
+- Theme toggle in `src/components/theme-switcher/theme-switcher.tsx`
 
 ### Styling
 - CSS Modules for component styles (`*.module.css`)
@@ -50,12 +54,15 @@ bun test:coverage    # Generate coverage report
 
 | Purpose | Location |
 |---------|----------|
-| Root layout & analytics | `src/app/layout.tsx` |
+| Language layout (html lang, theme) | `src/app/[lang]/layout.tsx` |
+| Root layout (metadata only) | `src/app/layout.tsx` |
 | Post data loading | `src/util/posts.ts` |
-| Theme management | `src/components/theme-provider.tsx` |
+| Theme toggle | `src/components/theme-switcher/theme-switcher.tsx` |
 | Design tokens | `src/styles/variables.css` |
-| Next.js config | `next.config.mjs` |
+| Global styles | `src/app/globals.css` |
+| Next.js config | `next.config.ts` |
 | MDX components | `mdx-components.tsx` |
+| Vercel redirects | `vercel.json` |
 
 ## Testing
 

@@ -1,6 +1,6 @@
 # My Personal Blog
 
-This is my blog which I recently rewrote using [Next.js 15](https://nextjs.org/). Previously built with [Qwik-City](https://github.com/doganozturk/blog-qwik), I migrated to Next.js for its integration with Vercel and to try latest React features.
+This is my blog which I recently rewrote using [Next.js 16](https://nextjs.org/). Previously built with [Qwik-City](https://github.com/doganozturk/blog-qwik), I migrated to Next.js for its integration with Vercel and to try latest React features.
 
 ## Local Development
 
@@ -42,10 +42,12 @@ bun test:ci          # Run tests once
 
 ## Tech Stack
 
-- **Framework:** Next.js 15 with App Router
+- **Framework:** Next.js 16 with App Router
 - **Runtime:** Bun
 - **Content:** MDX with gray-matter frontmatter
 - **Styling:** CSS Modules + CSS Variables
+- **Theme:** next-themes
+- **i18n:** Dynamic `[lang]` route segment (en/tr)
 - **Analytics:** Vercel Analytics & Speed Insights
 - **Deployment:** Vercel (static export)
 
