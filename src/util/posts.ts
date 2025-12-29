@@ -50,11 +50,16 @@ export function getAllPosts(lang?: "en" | "tr"): PostFrontmatter[] {
       const fileContents = fs.readFileSync(postPath, "utf8");
       const { data } = matter(fileContents);
 
+      // Transform permalink to include language prefix
+      const rawPermalink = data.permalink as string;
+      const postSlug = rawPermalink.replace(/^\/?(tr\/)?/, "").replace(/\/$/, "");
+      const permalink = `/${language}/${postSlug}/`;
+
       posts.push({
         title: data.title,
         description: data.description,
         date: data.date,
-        permalink: data.permalink,
+        permalink,
         lang: data.lang || language,
       });
     }

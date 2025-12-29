@@ -1,3 +1,50 @@
 {
-  "bunVersion": "1.x"
+  "bunVersion": "1.x",
+  "redirects": [
+    {
+      "source": "/amsterdam-jsnation-2019/:path*",
+      "destination": "/en/amsterdam-jsnation-2019/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/cross-platform-development-react-native-web/:path*",
+      "destination": "/en/cross-platform-development-react-native-web/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/how-do-we-test-our-front-end-applications-in-trendyol-go-part-2/:path*",
+      "destination": "/en/how-do-we-test-our-front-end-applications-in-trendyol-go-part-2/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/javascript-basics-hoisting/:path*",
+      "destination": "/en/javascript-basics-hoisting/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/micro-frontends-architecture-with-webpack-module-federation-part-2/:path*",
+      "destination": "/en/micro-frontends-architecture-with-webpack-module-federation-part-2/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/of-sharks-network-cables-and-the-end-of-coding/:path*",
+      "destination": "/en/of-sharks-network-cables-and-the-end-of-coding/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/testing-google-maps-and-websockets-with-cypress/:path*",
+      "destination": "/en/testing-google-maps-and-websockets-with-cypress/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/understanding-decorators-through-basic-concepts-of-expressjs/:path*",
+      "destination": "/en/understanding-decorators-through-basic-concepts-of-expressjs/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/web-components/:path*",
+      "destination": "/en/web-components/:path*",
+      "permanent": true
+    }
+  ]
 }

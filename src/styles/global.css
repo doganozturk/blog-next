@@ -20,6 +20,7 @@ html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
+  color-scheme: light dark;
 }
 
 body {
@@ -35,11 +36,11 @@ body {
   }
 }
 
-body.light {
+html.light body {
   background-color: var(--color-bg-light);
 }
 
-body.dark {
+html.dark body {
   background-color: var(--color-bg-dark);
 }
 
@@ -98,7 +99,7 @@ a:focus-visible {
 }
 
 /* Light Theme */
-.theme-container.light {
+html.light .theme-container {
   --bg-color: var(--color-bg-light);
   --bg-elevated: var(--color-bg-elevated-light);
   --text-color: var(--color-text-light);
@@ -107,10 +108,11 @@ a:focus-visible {
   --border-color: var(--color-border-light);
   --code-bg: var(--color-code-bg-light);
   --accent-subtle: var(--color-accent-subtle);
+  color-scheme: light;
 }
 
 /* Dark Theme */
-.theme-container.dark {
+html.dark .theme-container {
   --bg-color: var(--color-bg-dark);
   --bg-elevated: var(--color-bg-elevated-dark);
   --text-color: var(--color-text-dark);
@@ -119,6 +121,7 @@ a:focus-visible {
   --border-color: var(--color-border-dark);
   --code-bg: var(--color-code-bg-dark);
   --accent-subtle: var(--color-accent-subtle-dark);
+  color-scheme: dark;
 }
 
 /* System preference fallbacks */
