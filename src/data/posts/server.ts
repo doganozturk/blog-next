@@ -144,7 +144,7 @@ export function getPostBySlug(slug: string, lang: Lang): PostData | null {
  */
 export function getPostByPermalink(permalink: string): PostData | null {
   const lang: Lang = permalink.startsWith("/tr/") ? "tr" : "en";
-  const slug = permalink.replace(/^\/?(tr\/)?/, "").replace(/\/$/, "");
+  const slug = permalink.replace(/^\/(en|tr)\//, "").replace(/\/$/, "");
 
   return getPostBySlug(slug, lang);
 }
