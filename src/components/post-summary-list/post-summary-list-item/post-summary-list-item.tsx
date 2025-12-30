@@ -1,6 +1,6 @@
 import type { Route } from "next";
 import Link from "next/link";
-import { formatDistance, Locale } from "~/util";
+import { formatDate, Locale } from "~/util";
 import styles from "./post-summary-list-item.module.css";
 
 export interface PostSummary {
@@ -28,7 +28,7 @@ export function PostSummaryListItem({
           →
         </span>
       </h2>
-      <p className={styles.date}>{formatDistance(date, locale)}</p>
+      <p className={styles.date}>{formatDate(date, locale)}</p>
       <p className={styles.summary}>{description}</p>
     </Link>
   );

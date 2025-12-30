@@ -1,1 +1,1 @@
-export * from "./format-distance";
+export * from "./format-date";
