@@ -148,6 +148,8 @@
   padding: var(--space-5) var(--container-padding);
   background-color: var(--code-bg);
   overflow-x: auto;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 .post [data-rehype-pretty-code-figure] pre {
@@ -161,6 +163,8 @@
   font-size: var(--text-sm);
   line-height: var(--leading-relaxed);
   color: var(--color-code-text);
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 /* Inline code */
