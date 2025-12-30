@@ -3,7 +3,8 @@ import { notFound } from "next/navigation";
 import { MainHeader } from "~/components/header/main-header/main-header";
 import { Footer } from "~/components/footer/footer";
 import { PostSummaryList } from "~/components/post-summary-list/post-summary-list";
-import { getAllPosts, isLang } from "@data/posts";
+import { isLang } from "@data/posts/types";
+import { getAllPosts } from "@data/posts/server";
 
 type Props = {
   params: Promise<{ lang: string }>;

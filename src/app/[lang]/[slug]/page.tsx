@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { PostHeader } from "~/components/header/post-header/post-header";
 import { Footer } from "~/components/footer/footer";
-import { getPostParams, getPostBySlug, isLang } from "@data/posts";
+import { isLang } from "@data/posts/types";
+import { getPostParams, getPostBySlug } from "@data/posts/server";
 
 type Props = {
   params: Promise<{ lang: string; slug: string }>;

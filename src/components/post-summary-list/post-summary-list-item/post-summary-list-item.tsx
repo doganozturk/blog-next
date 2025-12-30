@@ -1,6 +1,6 @@
 import type { Route } from "next";
 import Link from "next/link";
-import { formatDate, Locale } from "~/util";
+import { formatDate, Locale } from "@lib/format-date";
 import styles from "./post-summary-list-item.module.css";
 
 export interface PostSummary {

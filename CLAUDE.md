@@ -40,7 +40,13 @@ Note: `postbuild` runs `next-sitemap` automatically after build to generate site
 ~ or @     → ./src/*
 @content   → ./content/*
 @data      → ./src/data/*
+@lib       → ./src/lib/*
 ```
+
+Note: Direct imports are preferred over barrel files (index.ts). Import from specific modules:
+- `@data/posts/server` for post loading functions
+- `@data/posts/types` for types and type guards
+- `@lib/format-date` for date formatting
 
 ### Theme System
 - Uses `next-themes` library for theme management
@@ -69,6 +75,7 @@ Key settings in `next.config.ts`:
 | Language layout (html lang, theme) | `src/app/[lang]/layout.tsx` |
 | Root layout (metadata only) | `src/app/layout.tsx` |
 | Post data layer | `src/data/posts/` |
+| Utility functions | `src/lib/` |
 | Theme toggle | `src/components/theme-switcher/theme-switcher.tsx` |
 | Design tokens | `src/styles/variables.css` |
 | Global styles | `src/app/globals.css` |
