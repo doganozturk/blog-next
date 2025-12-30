@@ -8,6 +8,9 @@
   font-family: var(--font-body);
   line-height: var(--leading-relaxed);
   animation: fadeInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) both;
+
+  /* Code block offset for list items: list-padding + li-padding + container-padding */
+  --code-list-offset: calc(var(--space-4) + var(--space-5) + var(--container-padding));
 }
 
 /* ─────────────────────────────────────────────────────────────────────────────
@@ -129,7 +132,7 @@
 
 .post li pre,
 .post li [data-rehype-pretty-code-figure] {
-  margin-left: calc(-1 * var(--space-10));
+  margin-left: calc(-1 * var(--code-list-offset));
 }
 
 /* ─────────────────────────────────────────────────────────────────────────────
@@ -150,6 +153,8 @@
   overflow-x: auto;
   font-size: var(--text-sm);
   line-height: var(--leading-relaxed);
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 .post [data-rehype-pretty-code-figure] pre {
@@ -163,6 +168,14 @@
   font-size: inherit;
   line-height: inherit;
   color: var(--color-code-text);
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+/* Prevent iOS Safari from auto-scaling grid line items */
+.post [data-rehype-pretty-code-figure] [data-line] {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 /* Inline code */
@@ -221,6 +234,11 @@
    ───────────────────────────────────────────────────────────────────────────── */
 
 @media (min-width: 768px) {
+  .post {
+    /* Desktop: list-padding + li-padding (no container offset needed) */
+    --code-list-offset: calc(var(--space-6) + var(--space-6));
+  }
+
   .post h1 {
     font-size: var(--text-4xl);
   }
@@ -261,10 +279,5 @@
 
   .post [data-rehype-pretty-code-figure] pre {
     border: none;
-  }
-
-  .post li pre,
-  .post li [data-rehype-pretty-code-figure] {
-    margin-left: calc(-1 * var(--space-6));
   }
 }
