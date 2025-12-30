@@ -34,10 +34,11 @@ bun dev
 
 ```bash
 bun dev              # Start development server
-bun run build        # Build static site
+bun run build        # Build static site (+ sitemap generation)
 bun run lint         # Run ESLint
 bun test             # Run tests in watch mode
 bun test:ci          # Run tests once
+bun test:coverage    # Generate coverage report
 ```
 
 ## Tech Stack
@@ -49,6 +50,7 @@ bun test:ci          # Run tests once
 - **Theme:** next-themes
 - **i18n:** Dynamic `[lang]` route segment (en/tr)
 - **Analytics:** Vercel Analytics & Speed Insights
+- **SEO:** next-sitemap for sitemap generation
 - **Deployment:** Vercel (static export)
 
 ## Author
