@@ -47,6 +47,7 @@
     "@types/node": "^22.10.5",
     "@types/react": "^19.0.2",
     "@types/react-dom": "^19.0.2",
+    "bun-css-modules": "^1.0.11",
     "next-sitemap": "^4.2.3",
     "typescript": "~5.7.2"
   }
