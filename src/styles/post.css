@@ -153,8 +153,8 @@
   overflow-x: auto;
   font-size: var(--text-sm);
   line-height: var(--leading-relaxed);
-  -webkit-text-size-adjust: 100%;
-  text-size-adjust: 100%;
+  -webkit-text-size-adjust: none;
+  text-size-adjust: none;
 }
 
 .post [data-rehype-pretty-code-figure] pre {
@@ -168,15 +168,15 @@
   font-size: inherit;
   line-height: inherit;
   color: var(--color-code-text);
-  -webkit-text-size-adjust: 100%;
-  text-size-adjust: 100%;
+  -webkit-text-size-adjust: none;
+  text-size-adjust: none;
 }
 
 /* Prevent iOS Safari from auto-scaling any element within code blocks */
 .post [data-rehype-pretty-code-figure] *,
 .post pre * {
-  -webkit-text-size-adjust: 100%;
-  text-size-adjust: 100%;
+  -webkit-text-size-adjust: none;
+  text-size-adjust: none;
 }
 
 /* Inline code */
