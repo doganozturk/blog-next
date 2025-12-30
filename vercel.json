@@ -1,50 +1,51 @@
 {
+  "$schema": "https://openapi.vercel.sh/vercel.json",
   "bunVersion": "1.x",
-  "redirects": [
+  "routes": [
     {
-      "source": "/amsterdam-jsnation-2019/:path*",
-      "destination": "/en/amsterdam-jsnation-2019/:path*",
-      "permanent": true
+      "src": "/amsterdam-jsnation-2019(/.*)?",
+      "status": 308,
+      "headers": { "Location": "/en/amsterdam-jsnation-2019$1" }
     },
     {
-      "source": "/cross-platform-development-react-native-web/:path*",
-      "destination": "/en/cross-platform-development-react-native-web/:path*",
-      "permanent": true
+      "src": "/cross-platform-development-react-native-web(/.*)?",
+      "status": 308,
+      "headers": { "Location": "/en/cross-platform-development-react-native-web$1" }
     },
     {
-      "source": "/how-do-we-test-our-front-end-applications-in-trendyol-go-part-2/:path*",
-      "destination": "/en/how-do-we-test-our-front-end-applications-in-trendyol-go-part-2/:path*",
-      "permanent": true
+      "src": "/how-do-we-test-our-front-end-applications-in-trendyol-go-part-2(/.*)?",
+      "status": 308,
+      "headers": { "Location": "/en/how-do-we-test-our-front-end-applications-in-trendyol-go-part-2$1" }
     },
     {
-      "source": "/javascript-basics-hoisting/:path*",
-      "destination": "/en/javascript-basics-hoisting/:path*",
-      "permanent": true
+      "src": "/javascript-basics-hoisting(/.*)?",
+      "status": 308,
+      "headers": { "Location": "/en/javascript-basics-hoisting$1" }
     },
     {
-      "source": "/micro-frontends-architecture-with-webpack-module-federation-part-2/:path*",
-      "destination": "/en/micro-frontends-architecture-with-webpack-module-federation-part-2/:path*",
-      "permanent": true
+      "src": "/micro-frontends-architecture-with-webpack-module-federation-part-2(/.*)?",
+      "status": 308,
+      "headers": { "Location": "/en/micro-frontends-architecture-with-webpack-module-federation-part-2$1" }
     },
     {
-      "source": "/of-sharks-network-cables-and-the-end-of-coding/:path*",
-      "destination": "/en/of-sharks-network-cables-and-the-end-of-coding/:path*",
-      "permanent": true
+      "src": "/of-sharks-network-cables-and-the-end-of-coding(/.*)?",
+      "status": 308,
+      "headers": { "Location": "/en/of-sharks-network-cables-and-the-end-of-coding$1" }
     },
     {
-      "source": "/testing-google-maps-and-websockets-with-cypress/:path*",
-      "destination": "/en/testing-google-maps-and-websockets-with-cypress/:path*",
-      "permanent": true
+      "src": "/testing-google-maps-and-websockets-with-cypress(/.*)?",
+      "status": 308,
+      "headers": { "Location": "/en/testing-google-maps-and-websockets-with-cypress$1" }
     },
     {
-      "source": "/understanding-decorators-through-basic-concepts-of-expressjs/:path*",
-      "destination": "/en/understanding-decorators-through-basic-concepts-of-expressjs/:path*",
-      "permanent": true
+      "src": "/understanding-decorators-through-basic-concepts-of-expressjs(/.*)?",
+      "status": 308,
+      "headers": { "Location": "/en/understanding-decorators-through-basic-concepts-of-expressjs$1" }
     },
     {
-      "source": "/web-components/:path*",
-      "destination": "/en/web-components/:path*",
-      "permanent": true
+      "src": "/web-components(/.*)?",
+      "status": 308,
+      "headers": { "Location": "/en/web-components$1" }
     }
   ]
 }
