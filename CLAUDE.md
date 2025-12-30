@@ -24,7 +24,7 @@ Note: `postbuild` runs `next-sitemap` automatically after build to generate site
 ### Content System
 - Blog posts are MDX files in `/content/posts/[en|tr]/[slug]/index.mdx`
 - Frontmatter includes: `title`, `description`, `date`, `permalink`, `lang`
-- Posts loaded via `src/util/posts.ts` using `gray-matter` for frontmatter parsing
+- Post data layer in `src/data/posts/` (server-only with `gray-matter`)
 - Custom MDX components registered in `mdx-components.tsx`
 
 ### Routing (App Router with i18n)
@@ -39,6 +39,7 @@ Note: `postbuild` runs `next-sitemap` automatically after build to generate site
 ```
 ~ or @     → ./src/*
 @content   → ./content/*
+@data      → ./src/data/*
 ```
 
 ### Theme System
@@ -67,7 +68,7 @@ Key settings in `next.config.ts`:
 |---------|----------|
 | Language layout (html lang, theme) | `src/app/[lang]/layout.tsx` |
 | Root layout (metadata only) | `src/app/layout.tsx` |
-| Post data loading | `src/util/posts.ts` |
+| Post data layer | `src/data/posts/` |
 | Theme toggle | `src/components/theme-switcher/theme-switcher.tsx` |
 | Design tokens | `src/styles/variables.css` |
 | Global styles | `src/app/globals.css` |

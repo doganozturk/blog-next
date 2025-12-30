@@ -2,18 +2,14 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { PostHeader } from "~/components/header/post-header/post-header";
 import { Footer } from "~/components/footer/footer";
-import { getAllSlugs, getPostBySlug } from "~/util/posts";
+import { getPostParams, getPostBySlug, isLang } from "@data/posts";
 
 type Props = {
   params: Promise<{ lang: string; slug: string }>;
 };
 
-type Lang = "en" | "tr";
-
 export function generateStaticParams() {
-  const enSlugs = getAllSlugs("en").map((slug) => ({ lang: "en", slug }));
-  const trSlugs = getAllSlugs("tr").map((slug) => ({ lang: "tr", slug }));
-  return [...enSlugs, ...trSlugs];
+  return getPostParams();
 }
 
 export const dynamicParams = false;
@@ -21,11 +17,11 @@ export const dynamicParams = false;
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { lang, slug } = await params;
 
-  if (lang !== "en" && lang !== "tr") {
+  if (!isLang(lang)) {
     return {};
   }
 
-  const post = getPostBySlug(slug, lang as Lang);
+  const post = getPostBySlug(slug, lang);
 
   if (!post) {
     return {};
@@ -67,7 +63,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function PostPage({ params }: Props) {
   const { lang, slug } = await params;
 
-  if (lang !== "en" && lang !== "tr") {
+  if (!isLang(lang)) {
     notFound();
   }
 

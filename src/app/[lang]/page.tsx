@@ -3,13 +3,11 @@ import { notFound } from "next/navigation";
 import { MainHeader } from "~/components/header/main-header/main-header";
 import { Footer } from "~/components/footer/footer";
 import { PostSummaryList } from "~/components/post-summary-list/post-summary-list";
-import { getAllPosts } from "~/util/posts";
+import { getAllPosts, isLang } from "@data/posts";
 
 type Props = {
   params: Promise<{ lang: string }>;
 };
-
-type Lang = "en" | "tr";
 
 const META = {
   en: {
@@ -33,7 +31,7 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { lang } = await params;
 
-  if (lang !== "en" && lang !== "tr") {
+  if (!isLang(lang)) {
     return {};
   }
 
@@ -71,11 +69,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function HomePage({ params }: Props) {
   const { lang } = await params;
 
-  if (lang !== "en" && lang !== "tr") {
+  if (!isLang(lang)) {
     notFound();
   }
 
-  const posts = getAllPosts(lang as Lang);
+  const posts = getAllPosts(lang);
 
   return (
     <>

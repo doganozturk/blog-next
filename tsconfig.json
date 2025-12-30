@@ -32,6 +32,9 @@
       ],
       "@content/*": [
         "./content/*"
+      ],
+      "@data/*": [
+        "./src/data/*"
       ]
     }
   },
