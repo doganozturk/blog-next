@@ -172,8 +172,9 @@
   text-size-adjust: 100%;
 }
 
-/* Prevent iOS Safari from auto-scaling grid line items */
-.post [data-rehype-pretty-code-figure] [data-line] {
+/* Prevent iOS Safari from auto-scaling any element within code blocks */
+.post [data-rehype-pretty-code-figure] *,
+.post pre * {
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
 }
