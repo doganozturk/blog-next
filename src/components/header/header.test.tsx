@@ -10,6 +10,11 @@ mock.module("next-themes", () => ({
   }),
 }));
 
+// Mock next/navigation for useParams
+mock.module("next/navigation", () => ({
+  useParams: () => ({ lang: "en" }),
+}));
+
 describe("Header", () => {
   it("renders children", () => {
     render(
@@ -32,7 +37,7 @@ describe("Header", () => {
     expect(screen.getByText("🌚")).toBeInTheDocument();
   });
 
-  it("renders link to home page", () => {
+  it("renders link to home page with locale", () => {
     render(
       <Header type={HeaderType.Main}>
         <span>Content</span>
@@ -40,7 +45,7 @@ describe("Header", () => {
     );
 
     const link = screen.getByRole("link");
-    expect(link).toHaveAttribute("href", "/");
+    expect(link).toHaveAttribute("href", "/en/");
   });
 
   it("has aria-label='back' when type is Post", () => {

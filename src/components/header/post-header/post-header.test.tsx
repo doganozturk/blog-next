@@ -10,6 +10,11 @@ mock.module("next-themes", () => ({
   }),
 }));
 
+// Mock next/navigation for useParams used by Header
+mock.module("next/navigation", () => ({
+  useParams: () => ({ lang: "en" }),
+}));
+
 describe("PostHeader", () => {
   it("renders back arrow", () => {
     render(<PostHeader />);
@@ -30,10 +35,10 @@ describe("PostHeader", () => {
     expect(arrow).toHaveAttribute("aria-hidden", "true");
   });
 
-  it("renders link to home page", () => {
+  it("renders link to home page with locale", () => {
     render(<PostHeader />);
 
     const link = screen.getByRole("link");
-    expect(link).toHaveAttribute("href", "/");
+    expect(link).toHaveAttribute("href", "/en/");
   });
 });

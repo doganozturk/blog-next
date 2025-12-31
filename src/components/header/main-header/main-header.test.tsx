@@ -10,6 +10,11 @@ mock.module("next-themes", () => ({
   }),
 }));
 
+// Mock next/navigation for useParams used by Header
+mock.module("next/navigation", () => ({
+  useParams: () => ({ lang: "en" }),
+}));
+
 describe("MainHeader", () => {
   it("renders avatar image with correct alt text", () => {
     render(<MainHeader />);
@@ -48,10 +53,10 @@ describe("MainHeader", () => {
     ).toBeInTheDocument();
   });
 
-  it("renders link to home page", () => {
+  it("renders link to home page with locale", () => {
     render(<MainHeader />);
 
     const link = screen.getByRole("link");
-    expect(link).toHaveAttribute("href", "/");
+    expect(link).toHaveAttribute("href", "/en/");
   });
 });
