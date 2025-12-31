@@ -10,11 +10,6 @@ mock.module("next-themes", () => ({
   }),
 }));
 
-// Mock next/navigation for useParams
-mock.module("next/navigation", () => ({
-  useParams: () => ({ lang: "en" }),
-}));
-
 describe("Header", () => {
   it("renders children", () => {
     render(

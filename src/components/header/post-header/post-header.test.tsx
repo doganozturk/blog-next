@@ -10,11 +10,6 @@ mock.module("next-themes", () => ({
   }),
 }));
 
-// Mock next/navigation for useParams used by Header
-mock.module("next/navigation", () => ({
-  useParams: () => ({ lang: "en" }),
-}));
-
 describe("PostHeader", () => {
   it("renders back arrow", () => {
     render(<PostHeader />);
