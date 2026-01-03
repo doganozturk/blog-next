@@ -1,55 +1,107 @@
 /* ═══════════════════════════════════════════════════════════════════════════
-   MAIN HEADER — Homepage header with avatar and title
+   MAIN HEADER — Homepage header with refined avatar and typography
    ═══════════════════════════════════════════════════════════════════════════ */
 
 .title {
   display: flex;
   flex-direction: column;
-  gap: var(--space-2);
+  gap: var(--space-1);
   min-width: 0;
 }
 
+/* ─────────────────────────────────────────────────────────────────────────────
+   NAME — Display typography with subtle hover
+   ───────────────────────────────────────────────────────────────────────────── */
+
 .name {
   font-family: var(--font-display);
-  font-size: var(--text-3xl);
+  font-size: var(--text-2xl);
   font-weight: var(--font-weight-normal);
   line-height: var(--leading-tight);
   letter-spacing: var(--tracking-tight);
   color: var(--text-color);
+
+  /* Smooth color transition */
+  transition: color var(--duration-fast) var(--ease-out);
 }
 
+/* Hover state - name changes to accent */
+.headerMain:hover .name {
+  color: var(--color-accent);
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   INFO — Subtitle with refined typography
+   ───────────────────────────────────────────────────────────────────────────── */
+
 .info {
-  font-size: var(--text-sm);
+  font-size: var(--text-xs);
   color: var(--text-secondary);
-  letter-spacing: var(--tracking-normal);
+  letter-spacing: var(--tracking-wide);
   text-transform: uppercase;
   line-height: var(--leading-snug);
+
+  /* Handle overflow gracefully */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   AVATAR — Refined with subtle hover effects
+   ───────────────────────────────────────────────────────────────────────────── */
 
 .avatar {
   width: var(--avatar-size);
   height: var(--avatar-size);
   border-radius: var(--radius-full);
-  border: 3px solid var(--border-color);
+  border: 2px solid var(--border-color);
+  flex-shrink: 0;
+
+  /* GPU acceleration for smooth animations */
+  will-change: transform, border-color;
+
   transition:
-    border-color var(--transition-base),
-    transform var(--transition-base),
-    box-shadow var(--transition-base);
+    border-color var(--duration-normal) var(--ease-out),
+    transform var(--duration-normal) var(--ease-smooth-out),
+    box-shadow var(--duration-normal) var(--ease-out);
 }
 
-.avatar:hover {
-  border-color: var(--color-accent);
-  transform: scale(1.02);
-  box-shadow: 0 0 0 4px var(--accent-subtle);
-}
+/* ─────────────────────────────────────────────────────────────────────────────
+   DESKTOP AVATAR HOVER
+   ───────────────────────────────────────────────────────────────────────────── */
 
 @media (min-width: 768px) {
   .name {
     font-size: var(--text-4xl);
+    letter-spacing: var(--tracking-tighter);
   }
 
   .info {
     font-size: var(--text-sm);
     letter-spacing: var(--tracking-wide);
+    white-space: normal;
+  }
+
+  .avatar {
+    border-width: 3px;
+  }
+
+  .avatar:hover {
+    border-color: var(--color-accent);
+    transform: scale(1.02);
+    box-shadow: 0 0 0 4px var(--accent-subtle);
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   MOBILE AVATAR TOUCH
+   ───────────────────────────────────────────────────────────────────────────── */
+
+@media (max-width: 767px) {
+  .headerMain:active .avatar {
+    transform: scale(0.97);
+    border-color: var(--color-accent);
+    transition-duration: var(--duration-instant);
   }
 }
