@@ -28,8 +28,9 @@ describe("Header", () => {
       </Header>
     );
 
-    // ThemeSwitcher renders moon emoji in light mode
-    expect(screen.getByText("🌚")).toBeInTheDocument();
+    // ThemeSwitcher renders as a button with aria-label in light mode
+    const themeSwitcher = screen.getByRole("button", { name: /switch to dark theme/i });
+    expect(themeSwitcher).toBeInTheDocument();
   });
 
   it("renders link to home page with locale", () => {

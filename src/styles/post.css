@@ -1,13 +1,13 @@
 /* ═══════════════════════════════════════════════════════════════════════════
-   POST PAGE — Article typography and content styling
+   POST PAGE — Article typography with world-class reading experience
    ═══════════════════════════════════════════════════════════════════════════ */
 
 .post {
-  margin-top: var(--space-12);
+  margin-top: var(--space-10);
   margin-bottom: var(--space-10);
   font-family: var(--font-body);
   line-height: var(--leading-relaxed);
-  animation: fadeInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) both;
+  animation: fadeInUp 0.5s var(--ease-out-expo) both;
 
   /* Code block offset for list items: list-padding + li-padding + container-padding */
   --code-list-offset: calc(var(--space-4) + var(--space-5) + var(--container-padding));
@@ -19,15 +19,15 @@
 
 .post h1 {
   font-family: var(--font-display);
-  font-size: var(--text-3xl);
+  font-size: var(--text-2xl);
   font-weight: var(--font-weight-normal);
-  line-height: var(--leading-tight);
+  line-height: 1.2;
   letter-spacing: var(--tracking-tight);
   color: var(--text-color);
 }
 
 .post h1 + p {
-  margin-top: var(--space-3);
+  margin-top: var(--space-2);
   font-size: var(--text-sm);
   font-weight: var(--font-weight-medium);
   color: var(--color-accent);
@@ -36,9 +36,9 @@
 }
 
 .post h2 {
-  margin-top: var(--space-16);
+  margin-top: var(--space-12);
   font-family: var(--font-display);
-  font-size: var(--text-2xl);
+  font-size: var(--text-xl);
   font-weight: var(--font-weight-normal);
   line-height: var(--leading-snug);
   letter-spacing: var(--tracking-tight);
@@ -46,9 +46,9 @@
 }
 
 .post h3 {
-  margin-top: var(--space-10);
+  margin-top: var(--space-8);
   font-family: var(--font-display);
-  font-size: var(--text-xl);
+  font-size: var(--text-lg);
   font-weight: var(--font-weight-normal);
   line-height: var(--leading-snug);
   color: var(--text-color);
@@ -59,9 +59,15 @@
    ───────────────────────────────────────────────────────────────────────────── */
 
 .post p {
-  margin-top: var(--space-6);
-  font-size: var(--text-base);
+  margin-top: var(--space-5);
+  font-size: var(--text-mobile-body);
+  line-height: 1.65;
   color: var(--text-secondary);
+
+  /* Better mobile line breaks */
+  hyphens: auto;
+  -webkit-hyphens: auto;
+  word-break: break-word;
 }
 
 .post hr + p {
@@ -74,8 +80,8 @@
   text-underline-offset: 3px;
   text-decoration-thickness: 1px;
   transition:
-    color var(--transition-fast),
-    text-decoration-color var(--transition-fast);
+    color var(--duration-fast) var(--ease-out),
+    text-decoration-color var(--duration-fast) var(--ease-out);
 }
 
 .post a:hover {
@@ -84,7 +90,7 @@
 }
 
 .post strong {
-  font-weight: var(--font-weight-medium);
+  font-weight: var(--font-weight-semibold);
   color: var(--text-color);
 }
 
@@ -98,7 +104,7 @@
 
 .post ul,
 .post ol {
-  margin-top: var(--space-6);
+  margin-top: var(--space-5);
   padding-left: var(--space-4);
   color: var(--text-secondary);
 }
@@ -125,9 +131,9 @@
 
 .post li {
   position: relative;
-  margin-top: var(--space-3);
+  margin-top: var(--space-2);
   padding-left: var(--space-5);
-  font-size: var(--text-base);
+  font-size: var(--text-mobile-body);
 }
 
 .post li pre,
@@ -141,18 +147,19 @@
 
 .post [data-rehype-pretty-code-figure],
 .post pre {
-  margin: var(--space-8) calc(-1 * var(--container-padding)) 0;
+  margin: var(--space-6) calc(-1 * var(--container-padding)) 0;
   border-top: 1px solid var(--border-color);
   border-bottom: 1px solid var(--border-color);
 }
 
 .post [data-rehype-pretty-code-figure] pre,
 .post pre {
-  padding: var(--space-5) var(--container-padding);
+  padding: var(--space-4) var(--container-padding);
   background-color: var(--code-bg);
   overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
   font-size: var(--text-sm);
-  line-height: var(--leading-relaxed);
+  line-height: 1.5;
 }
 
 .post [data-rehype-pretty-code-figure] pre {
@@ -171,9 +178,9 @@
 /* Inline code */
 .post p > code,
 .post li > code {
-  padding: var(--space-1) var(--space-2);
+  padding: var(--space-1) 6px;
   font-family: var(--font-code);
-  font-size: 0.9em;
+  font-size: 0.875em;
   color: var(--color-accent);
   background-color: var(--accent-subtle);
   border-radius: var(--radius-sm);
@@ -184,13 +191,14 @@
    ───────────────────────────────────────────────────────────────────────────── */
 
 .post blockquote {
-  margin-top: var(--space-8);
-  padding: var(--space-5) var(--space-6);
+  margin-top: var(--space-6);
+  padding: var(--space-4) var(--space-5);
   font-style: italic;
+  font-size: var(--text-mobile-body);
   color: var(--text-secondary);
   background-color: var(--bg-elevated);
-  border-left: 3px solid var(--color-accent);
-  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  border-left: 4px solid var(--color-accent);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
 }
 
 .post blockquote p {
@@ -202,7 +210,8 @@
    ───────────────────────────────────────────────────────────────────────────── */
 
 .post hr {
-  margin-top: var(--space-12);
+  margin-top: var(--space-10);
+  margin-bottom: var(--space-4);
   height: 1px;
   background-color: var(--border-color);
   border: none;
@@ -213,32 +222,56 @@
    ───────────────────────────────────────────────────────────────────────────── */
 
 .post img {
-  max-width: 100%;
+  width: calc(100% + var(--container-padding) * 2);
+  margin-left: calc(-1 * var(--container-padding));
+  max-width: none;
   height: auto;
-  margin-top: var(--space-8);
-  border-radius: var(--radius-md);
+  margin-top: var(--space-6);
+  border-radius: var(--radius-sm);
 }
 
 /* ─────────────────────────────────────────────────────────────────────────────
-   RESPONSIVE
+   DESKTOP RESPONSIVE — Enhanced reading experience
    ───────────────────────────────────────────────────────────────────────────── */
 
 @media (min-width: 768px) {
   .post {
+    margin-top: var(--space-12);
+    margin-bottom: var(--space-12);
     /* Desktop: list-padding + li-padding (no container offset needed) */
     --code-list-offset: calc(var(--space-6) + var(--space-6));
   }
 
   .post h1 {
     font-size: var(--text-4xl);
+    letter-spacing: var(--tracking-tighter);
   }
 
   .post h2 {
+    margin-top: var(--space-16);
     font-size: var(--text-3xl);
+  }
+
+  .post h3 {
+    margin-top: var(--space-10);
+    font-size: var(--text-xl);
+  }
+
+  .post p {
+    margin-top: var(--space-6);
+    font-size: var(--text-base);
+    line-height: var(--leading-relaxed);
+    hyphens: none;
+  }
+
+  .post li {
+    margin-top: var(--space-3);
+    font-size: var(--text-base);
   }
 
   .post ul,
   .post ol {
+    margin-top: var(--space-6);
     padding-left: var(--space-6);
   }
 
@@ -254,20 +287,107 @@
     padding-left: var(--space-6);
   }
 
+  /* Code blocks - card treatment on desktop */
   .post [data-rehype-pretty-code-figure],
   .post pre {
     margin: var(--space-8) 0 0 0;
-    border-radius: var(--radius-md);
+    border-radius: var(--radius-lg);
     border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-contextual-1);
+    transition:
+      box-shadow var(--duration-normal) var(--ease-out),
+      border-color var(--duration-normal) var(--ease-out);
+  }
+
+  .post [data-rehype-pretty-code-figure]:hover,
+  .post pre:hover {
+    box-shadow: var(--shadow-contextual-2);
+    border-color: var(--text-muted);
   }
 
   .post [data-rehype-pretty-code-figure] pre,
   .post pre {
     padding: var(--space-6);
-    border-radius: var(--radius-md);
+    border-radius: var(--radius-lg);
   }
 
   .post [data-rehype-pretty-code-figure] pre {
     border: none;
+    box-shadow: none;
+  }
+
+  /* Blockquotes - enhanced styling */
+  .post blockquote {
+    margin-top: var(--space-8);
+    padding: var(--space-6) var(--space-8);
+    font-size: var(--text-base);
+    background: var(--gradient-accent-soft);
+    border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+    box-shadow: var(--shadow-contextual-1);
+    transition:
+      box-shadow var(--duration-normal) var(--ease-out),
+      transform var(--duration-normal) var(--ease-smooth-out);
+  }
+
+  .post blockquote:hover {
+    box-shadow: var(--shadow-contextual-2);
+    transform: translateX(2px);
+  }
+
+  /* Images - proper sizing on desktop */
+  .post img {
+    width: 100%;
+    margin-left: 0;
+    max-width: 100%;
+    margin-top: var(--space-8);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-contextual-2);
+    transition:
+      box-shadow var(--duration-normal) var(--ease-out),
+      transform var(--duration-normal) var(--ease-smooth-out);
+  }
+
+  .post img:hover {
+    box-shadow: var(--shadow-contextual-3);
+    transform: scale(1.005);
+  }
+
+  /* Enhanced link styling with animated underline */
+  .post a {
+    text-decoration: none;
+    background-image: linear-gradient(
+      to right,
+      var(--color-accent),
+      var(--color-accent)
+    );
+    background-size: 0% 2px;
+    background-repeat: no-repeat;
+    background-position: left bottom;
+    padding-bottom: 2px;
+    transition:
+      color var(--duration-fast) var(--ease-out),
+      background-size var(--duration-normal) var(--ease-smooth-out);
+  }
+
+  .post a:hover {
+    color: var(--color-accent-hover);
+    background-size: 100% 2px;
+  }
+
+  /* Inline code - enhanced */
+  .post p > code,
+  .post li > code {
+    padding: var(--space-1) var(--space-2);
+    font-size: 0.88em;
+    border: 1px solid rgba(255, 77, 0, 0.1);
+    transition:
+      background-color var(--duration-fast) var(--ease-out),
+      border-color var(--duration-fast) var(--ease-out);
+  }
+
+  .post p > code:hover,
+  .post li > code:hover {
+    background-color: var(--color-accent-100);
+    border-color: rgba(255, 77, 0, 0.2);
   }
 }

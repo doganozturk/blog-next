@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════════════════════════════════
-   HEADER — Base component with theme switcher
+   HEADER — Base component with refined interactions
    ═══════════════════════════════════════════════════════════════════════════ */
 
 .header {
@@ -12,21 +12,28 @@
   justify-content: space-between;
   align-items: flex-start;
   padding: var(--space-6) 0;
-  animation: fadeIn 0.5s cubic-bezier(0.4, 0, 0.2, 1) both;
+  animation: fadeIn 0.5s var(--ease-out-expo) both;
 }
 
 .headerMain {
   display: var(--header-main-display);
   align-items: center;
   gap: var(--header-gap);
-  transition: opacity var(--transition-base);
   min-width: 0;
+
+  /* Touch optimization */
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+
+  /* Smooth transitions */
+  transition:
+    opacity var(--duration-normal) var(--ease-out),
+    transform var(--duration-normal) var(--ease-smooth-out);
 }
 
-.headerMain:hover {
-  opacity: 1;
-  color: inherit;
-}
+/* ─────────────────────────────────────────────────────────────────────────────
+   DESKTOP HOVER STATES
+   ───────────────────────────────────────────────────────────────────────────── */
 
 @media (min-width: 768px) {
   .header {
@@ -34,5 +41,33 @@
     --header-gap: var(--space-6);
     padding: var(--space-12) 0 var(--space-8) 0;
     align-items: flex-start;
+  }
+
+  .headerMain {
+    padding: var(--space-2);
+    margin: calc(-1 * var(--space-2));
+    border-radius: var(--radius-lg);
+  }
+
+  .headerMain:hover {
+    background-color: var(--neutral-50);
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   MOBILE TOUCH STATES
+   ───────────────────────────────────────────────────────────────────────────── */
+
+@media (max-width: 767px) {
+  .headerMain {
+    padding: var(--space-2);
+    margin: calc(-1 * var(--space-2));
+    border-radius: var(--radius-lg);
+  }
+
+  .headerMain:active {
+    opacity: 0.85;
+    transform: scale(0.98);
+    transition-duration: var(--duration-instant);
   }
 }

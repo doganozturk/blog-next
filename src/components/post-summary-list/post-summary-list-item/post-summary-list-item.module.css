@@ -1,94 +1,269 @@
 /* ═══════════════════════════════════════════════════════════════════════════
-   POST SUMMARY LIST ITEM — Individual blog post preview card
+   POST SUMMARY LIST ITEM — Blog post preview card with world-class interactions
    ═══════════════════════════════════════════════════════════════════════════ */
 
 .postSummaryListItem {
   display: block;
   position: relative;
-  padding: var(--space-6) 0;
-  border-bottom: 1px solid var(--border-color);
+  padding: var(--space-5) var(--space-4);
+  margin: 0 calc(-1 * var(--space-4));
+  border-radius: var(--radius-lg);
+  border: 1px solid transparent;
+
+  /* Touch optimization */
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+
+  /* Smooth transitions */
+  transition:
+    background-color var(--duration-fast) var(--ease-out),
+    border-color var(--duration-fast) var(--ease-out),
+    box-shadow var(--duration-normal) var(--ease-smooth-out),
+    transform var(--duration-normal) var(--ease-smooth-out);
 }
 
-.postSummaryListItem:first-of-type {
-  padding-top: 0;
+/* Divider line between items */
+.postSummaryListItem::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: var(--space-4);
+  right: var(--space-4);
+  height: 1px;
+  background-color: var(--border-color);
+  transition: opacity var(--duration-fast) var(--ease-out);
 }
 
-.postSummaryListItem:last-of-type {
-  border-bottom: none;
+.postSummaryListItem:last-of-type::after {
+  display: none;
 }
 
+/* ─────────────────────────────────────────────────────────────────────────────
+   DESKTOP HOVER STATES — Subtle, refined elevation
+   ───────────────────────────────────────────────────────────────────────────── */
+
+@media (min-width: 768px) {
+  .postSummaryListItem {
+    padding: var(--space-6) var(--space-6);
+    margin: 0 calc(-1 * var(--space-6));
+  }
+
+  .postSummaryListItem::after {
+    left: var(--space-6);
+    right: var(--space-6);
+  }
+
+  .postSummaryListItem:hover {
+    background-color: var(--neutral-50);
+    border-color: var(--border-color);
+    box-shadow: var(--shadow-contextual-1);
+    transform: translateY(-2px);
+  }
+
+  .postSummaryListItem:hover::after {
+    opacity: 0;
+  }
+
+  /* Active/pressed state */
+  .postSummaryListItem:active {
+    transform: translateY(0);
+    box-shadow: none;
+    transition-duration: var(--duration-instant);
+  }
+}
+
+/* Focus state */
+.postSummaryListItem:focus-visible {
+  outline: none;
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px var(--accent-subtle);
+}
+
+/* Title color change on hover */
 .postSummaryListItem:hover .title {
   color: var(--color-accent);
 }
 
+/* Arrow reveal on hover */
 .postSummaryListItem:hover .arrow {
   opacity: 1;
   transform: translateX(0);
 }
 
-/* Title */
+/* ─────────────────────────────────────────────────────────────────────────────
+   MOBILE TOUCH STATES — Immediate feedback
+   ───────────────────────────────────────────────────────────────────────────── */
+
+@media (max-width: 767px) {
+  .postSummaryListItem:active {
+    background-color: var(--tap-highlight);
+    transform: scale(0.985);
+    transition-duration: 0ms;
+  }
+
+  .postSummaryListItem:active .title {
+    color: var(--color-accent);
+  }
+
+  .postSummaryListItem:active .arrow {
+    opacity: 1;
+    transform: translateX(4px);
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   TITLE
+   ───────────────────────────────────────────────────────────────────────────── */
+
 .title {
   font-family: var(--font-display);
-  font-size: var(--text-2xl);
+  font-size: var(--text-xl);
   font-weight: var(--font-weight-normal);
   line-height: var(--leading-tight);
   letter-spacing: var(--tracking-tight);
   color: var(--text-color);
-  transition: color var(--transition-fast);
   display: flex;
-  align-items: center;
+  align-items: baseline;
   gap: var(--space-2);
+
+  /* GPU acceleration */
+  will-change: color;
+
+  transition: color var(--duration-fast) var(--ease-out);
 }
+
+@media (min-width: 768px) {
+  .title {
+    font-size: var(--text-2xl);
+    letter-spacing: var(--tracking-tighter);
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   ARROW — Progressive disclosure indicator
+   ───────────────────────────────────────────────────────────────────────────── */
 
 .arrow {
-  display: inline-block;
-  font-size: var(--text-lg);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--text-base);
   opacity: 0;
   transform: translateX(-8px);
+  flex-shrink: 0;
+
+  /* GPU acceleration */
+  will-change: opacity, transform;
+
   transition:
-    opacity var(--transition-fast),
-    transform var(--transition-fast);
+    opacity var(--duration-fast) var(--ease-out),
+    transform var(--duration-fast) var(--ease-spring-1);
 }
 
-/* Date */
+/* ─────────────────────────────────────────────────────────────────────────────
+   DATE — Subtle pill styling
+   ───────────────────────────────────────────────────────────────────────────── */
+
 .date {
+  display: inline-block;
   margin-top: var(--space-3);
-  font-size: var(--text-sm);
+  font-size: var(--text-xs);
   font-weight: var(--font-weight-medium);
   color: var(--color-accent);
   letter-spacing: var(--tracking-wider);
   text-transform: uppercase;
 }
 
-/* Summary */
+@media (min-width: 768px) {
+  .date {
+    font-size: var(--text-sm);
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   SUMMARY
+   ───────────────────────────────────────────────────────────────────────────── */
+
 .summary {
-  margin-top: var(--space-4);
-  font-size: var(--text-base);
+  margin-top: var(--space-3);
+  font-size: var(--text-mobile-small);
   line-height: var(--leading-relaxed);
   color: var(--text-secondary);
-}
 
-/* Staggered animation for list items */
-.postSummaryListItem {
-  animation: fadeInUp 0.5s cubic-bezier(0.4, 0, 0.2, 1) both;
+  /* Limit to 3 lines on mobile */
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
-
-.postSummaryListItem:nth-child(1) { animation-delay: 0.1s; }
-.postSummaryListItem:nth-child(2) { animation-delay: 0.15s; }
-.postSummaryListItem:nth-child(3) { animation-delay: 0.2s; }
-.postSummaryListItem:nth-child(4) { animation-delay: 0.25s; }
-.postSummaryListItem:nth-child(5) { animation-delay: 0.3s; }
-.postSummaryListItem:nth-child(6) { animation-delay: 0.35s; }
-.postSummaryListItem:nth-child(7) { animation-delay: 0.4s; }
-.postSummaryListItem:nth-child(8) { animation-delay: 0.45s; }
-.postSummaryListItem:nth-child(n+9) { animation-delay: 0.5s; }
 
 @media (min-width: 768px) {
+  .summary {
+    margin-top: var(--space-4);
+    font-size: var(--text-base);
+    -webkit-line-clamp: unset;
+    display: block;
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   STAGGERED ENTRANCE ANIMATIONS
+   ───────────────────────────────────────────────────────────────────────────── */
+
+.postSummaryListItem {
+  animation: fadeInUpSmall 0.4s var(--ease-out-expo) both;
+}
+
+.postSummaryListItem:nth-child(1) {
+  animation-delay: calc(var(--stagger-1) + 0.1s);
+}
+.postSummaryListItem:nth-child(2) {
+  animation-delay: calc(var(--stagger-2) + 0.1s);
+}
+.postSummaryListItem:nth-child(3) {
+  animation-delay: calc(var(--stagger-3) + 0.1s);
+}
+.postSummaryListItem:nth-child(4) {
+  animation-delay: calc(var(--stagger-4) + 0.1s);
+}
+.postSummaryListItem:nth-child(5) {
+  animation-delay: calc(var(--stagger-5) + 0.1s);
+}
+.postSummaryListItem:nth-child(6) {
+  animation-delay: 0.35s;
+}
+.postSummaryListItem:nth-child(7) {
+  animation-delay: 0.4s;
+}
+.postSummaryListItem:nth-child(n + 8) {
+  animation-delay: 0.45s;
+}
+
+/* Faster stagger on mobile */
+@media (max-width: 767px) {
   .postSummaryListItem {
-    padding: var(--space-8) 0;
+    animation-duration: 0.35s;
   }
 
-  .title {
-    font-size: var(--text-3xl);
+  .postSummaryListItem:nth-child(1) {
+    animation-delay: 0.05s;
+  }
+  .postSummaryListItem:nth-child(2) {
+    animation-delay: 0.08s;
+  }
+  .postSummaryListItem:nth-child(3) {
+    animation-delay: 0.11s;
+  }
+  .postSummaryListItem:nth-child(4) {
+    animation-delay: 0.14s;
+  }
+  .postSummaryListItem:nth-child(5) {
+    animation-delay: 0.17s;
+  }
+  .postSummaryListItem:nth-child(6) {
+    animation-delay: 0.2s;
+  }
+  .postSummaryListItem:nth-child(n + 7) {
+    animation-delay: 0.23s;
   }
 }

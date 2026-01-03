@@ -19,26 +19,30 @@ describe("ThemeSwitcher", () => {
     mockResolvedTheme = "light";
   });
 
-  it("renders moon icon in light mode", () => {
+  it("renders switch to dark button in light mode", () => {
     mockResolvedTheme = "light";
     render(<ThemeSwitcher />);
 
-    expect(screen.getByText("🌚")).toBeInTheDocument();
+    // In light mode, button shows moon icon and offers to switch to dark
+    const button = screen.getByRole("button", { name: /switch to dark theme/i });
+    expect(button).toBeInTheDocument();
   });
 
-  it("renders sun icon in dark mode", () => {
+  it("renders switch to light button in dark mode", () => {
     mockResolvedTheme = "dark";
     render(<ThemeSwitcher />);
 
-    expect(screen.getByText("🌞")).toBeInTheDocument();
+    // In dark mode, button shows sun icon and offers to switch to light
+    const button = screen.getByRole("button", { name: /switch to light theme/i });
+    expect(button).toBeInTheDocument();
   });
 
   it("calls setTheme with 'dark' when clicking in light mode", () => {
     mockResolvedTheme = "light";
     render(<ThemeSwitcher />);
 
-    const switcher = screen.getByText("🌚").parentElement!;
-    fireEvent.click(switcher);
+    const button = screen.getByRole("button", { name: /switch to dark theme/i });
+    fireEvent.click(button);
 
     expect(mockSetTheme).toHaveBeenCalledWith("dark");
   });
@@ -47,8 +51,8 @@ describe("ThemeSwitcher", () => {
     mockResolvedTheme = "dark";
     render(<ThemeSwitcher />);
 
-    const switcher = screen.getByText("🌞").parentElement!;
-    fireEvent.click(switcher);
+    const button = screen.getByRole("button", { name: /switch to light theme/i });
+    fireEvent.click(button);
 
     expect(mockSetTheme).toHaveBeenCalledWith("light");
   });

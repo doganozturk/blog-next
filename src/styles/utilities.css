@@ -1,8 +1,12 @@
 /* ═══════════════════════════════════════════════════════════════════════════
    UTILITY CLASSES
+   World-class utilities for focus states, touch feedback, and responsiveness
    ═══════════════════════════════════════════════════════════════════════════ */
 
-/* Visibility */
+/* ─────────────────────────────────────────────────────────────────────────────
+   VISIBILITY
+   ───────────────────────────────────────────────────────────────────────────── */
+
 .hidden {
   display: none;
 }
@@ -19,9 +23,286 @@
   border: 0;
 }
 
-/* Focus states */
+/* Responsive visibility */
+.mobile-only {
+  display: block;
+}
+
+.desktop-only {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .mobile-only {
+    display: none;
+  }
+
+  .desktop-only {
+    display: block;
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   FOCUS RING SYSTEM — Accessible, consistent focus states
+   ───────────────────────────────────────────────────────────────────────────── */
+
+/* Base focus ring - uses design system tokens */
+.focus-ring:focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 var(--focus-ring-offset) var(--bg-color),
+    0 0 0 calc(var(--focus-ring-offset) + var(--focus-ring-width)) var(--focus-ring-color);
+}
+
+/* Inset focus ring - for elements with existing borders */
+.focus-ring-inset:focus-visible {
+  outline: none;
+  box-shadow: inset 0 0 0 var(--focus-ring-width) var(--focus-ring-color);
+}
+
+/* Legacy focus-visible class (backwards compatibility) */
 .focus-visible:focus-visible {
-  outline: 2px solid var(--color-accent);
-  outline-offset: 2px;
+  outline: none;
+  box-shadow:
+    0 0 0 var(--focus-ring-offset) var(--bg-color),
+    0 0 0 calc(var(--focus-ring-offset) + var(--focus-ring-width)) var(--focus-ring-color);
   border-radius: var(--radius-sm);
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   TOUCH FEEDBACK — Mobile-optimized interaction states
+   ───────────────────────────────────────────────────────────────────────────── */
+
+.tap-feedback {
+  /* Disable default tap highlight */
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+
+  /* GPU acceleration */
+  will-change: transform, background-color;
+
+  /* Smooth transition for active state */
+  transition:
+    transform var(--duration-instant) var(--ease-out),
+    background-color var(--duration-instant) var(--ease-out);
+}
+
+.tap-feedback:active {
+  background-color: var(--tap-highlight);
+  transform: scale(0.98);
+}
+
+/* Stronger tap feedback variant */
+.tap-feedback-strong:active {
+  background-color: var(--tap-highlight);
+  transform: scale(0.95);
+}
+
+/* Touch target expansion - ensures minimum 44px touch area */
+.touch-target {
+  position: relative;
+}
+
+.touch-target::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  min-width: var(--touch-target-min);
+  min-height: var(--touch-target-min);
+  width: 100%;
+  height: 100%;
+}
+
+/* Comfortable touch target (48px) */
+.touch-target-comfortable {
+  min-width: var(--touch-target-comfortable);
+  min-height: var(--touch-target-comfortable);
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   GLASS EFFECT — Frosted glass for overlays and cards
+   ───────────────────────────────────────────────────────────────────────────── */
+
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+}
+
+.glass-subtle {
+  background: var(--glass-bg);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.glass-strong {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+html.dark .glass-strong {
+  background: rgba(17, 24, 39, 0.9);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   SAFE AREA PADDING — For modern mobile devices with notches
+   ───────────────────────────────────────────────────────────────────────────── */
+
+.safe-area-top {
+  padding-top: env(safe-area-inset-top, 0);
+}
+
+.safe-area-bottom {
+  padding-bottom: env(safe-area-inset-bottom, 0);
+}
+
+.safe-area-left {
+  padding-left: env(safe-area-inset-left, 0);
+}
+
+.safe-area-right {
+  padding-right: env(safe-area-inset-right, 0);
+}
+
+.safe-area-x {
+  padding-left: env(safe-area-inset-left, 0);
+  padding-right: env(safe-area-inset-right, 0);
+}
+
+.safe-area-y {
+  padding-top: env(safe-area-inset-top, 0);
+  padding-bottom: env(safe-area-inset-bottom, 0);
+}
+
+.safe-area-all {
+  padding-top: env(safe-area-inset-top, 0);
+  padding-right: env(safe-area-inset-right, 0);
+  padding-bottom: env(safe-area-inset-bottom, 0);
+  padding-left: env(safe-area-inset-left, 0);
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   ANIMATION UTILITIES — Common animation patterns
+   ───────────────────────────────────────────────────────────────────────────── */
+
+.animate-fadeIn {
+  animation: fadeIn var(--duration-normal) var(--ease-out-expo) both;
+}
+
+.animate-fadeInUp {
+  animation: fadeInUp var(--duration-normal) var(--ease-out-expo) both;
+}
+
+.animate-scaleIn {
+  animation: scaleIn var(--duration-normal) var(--ease-spring-1) both;
+}
+
+.animate-popIn {
+  animation: popIn var(--duration-normal) var(--ease-spring-2) both;
+}
+
+/* Animation delay utilities */
+.delay-100 {
+  animation-delay: 100ms;
+}
+
+.delay-200 {
+  animation-delay: 200ms;
+}
+
+.delay-300 {
+  animation-delay: 300ms;
+}
+
+.delay-400 {
+  animation-delay: 400ms;
+}
+
+.delay-500 {
+  animation-delay: 500ms;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   ELEVATION UTILITIES — Quick shadow application
+   ───────────────────────────────────────────────────────────────────────────── */
+
+.elevation-1 {
+  box-shadow: var(--shadow-contextual-1);
+}
+
+.elevation-2 {
+  box-shadow: var(--shadow-contextual-2);
+}
+
+.elevation-3 {
+  box-shadow: var(--shadow-contextual-3);
+}
+
+/* Hover elevation - use with transition */
+.hover-elevation {
+  transition: box-shadow var(--duration-normal) var(--ease-out);
+}
+
+.hover-elevation:hover {
+  box-shadow: var(--shadow-contextual-2);
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   INTERACTIVE UTILITIES — Common interaction patterns
+   ───────────────────────────────────────────────────────────────────────────── */
+
+/* Subtle hover lift effect */
+.hover-lift {
+  transition:
+    transform var(--duration-normal) var(--ease-smooth-out),
+    box-shadow var(--duration-normal) var(--ease-out);
+}
+
+.hover-lift:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-contextual-2);
+}
+
+/* Scale on hover */
+.hover-scale {
+  transition: transform var(--duration-normal) var(--ease-smooth-out);
+}
+
+.hover-scale:hover {
+  transform: scale(1.02);
+}
+
+/* Color shift to accent on hover */
+.hover-accent {
+  transition: color var(--duration-fast) var(--ease-out);
+}
+
+.hover-accent:hover {
+  color: var(--color-accent);
+}
+
+/* Reduced motion support - disable animations for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  .animate-fadeIn,
+  .animate-fadeInUp,
+  .animate-scaleIn,
+  .animate-popIn {
+    animation: none;
+  }
+
+  .hover-lift:hover,
+  .hover-scale:hover {
+    transform: none;
+  }
+
+  .tap-feedback:active,
+  .tap-feedback-strong:active {
+    transform: none;
+  }
 }

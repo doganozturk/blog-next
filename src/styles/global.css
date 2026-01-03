@@ -1,5 +1,6 @@
 /* ═══════════════════════════════════════════════════════════════════════════
    GLOBAL STYLES — Editorial Brutalism meets Swiss Precision
+   Enhanced for world-class UI/UX with Stripe-level polish
    ═══════════════════════════════════════════════════════════════════════════ */
 
 /* ─────────────────────────────────────────────────────────────────────────────
@@ -23,6 +24,7 @@ html {
   color-scheme: light dark;
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
+  scroll-behavior: smooth;
 }
 
 body {
@@ -47,13 +49,13 @@ html.dark body {
 }
 
 /* ─────────────────────────────────────────────────────────────────────────────
-   LINKS
+   LINKS — Enhanced with subtle transitions
    ───────────────────────────────────────────────────────────────────────────── */
 
 a {
   color: inherit;
   text-decoration: none;
-  transition: color var(--transition-fast), opacity var(--transition-fast);
+  transition: var(--transition-colors);
 }
 
 a:hover {
@@ -61,13 +63,13 @@ a:hover {
 }
 
 a:focus-visible {
-  outline: 2px solid var(--color-accent);
-  outline-offset: 2px;
+  outline: var(--focus-ring-width) solid var(--focus-ring-color);
+  outline-offset: var(--focus-ring-offset);
   border-radius: var(--radius-sm);
 }
 
 /* ─────────────────────────────────────────────────────────────────────────────
-   THEME CONTAINER
+   THEME CONTAINER — Enhanced with contextual variables
    ───────────────────────────────────────────────────────────────────────────── */
 
 .theme-container {
@@ -100,7 +102,7 @@ a:focus-visible {
     background-color var(--transition-theme);
 }
 
-/* Light Theme */
+/* Light Theme — Enhanced with contextual variables */
 html.light .theme-container {
   --bg-color: var(--color-bg-light);
   --bg-elevated: var(--color-bg-elevated-light);
@@ -110,10 +112,25 @@ html.light .theme-container {
   --border-color: var(--color-border-light);
   --code-bg: var(--color-code-bg-light);
   --accent-subtle: var(--color-accent-subtle);
+  --secondary-subtle: var(--color-secondary-subtle);
+
+  /* Contextual neutral backgrounds */
+  --neutral-50: var(--color-neutral-50-light);
+  --neutral-100: var(--color-neutral-100-light);
+  --neutral-150: var(--color-neutral-150-light);
+
+  /* Contextual shadows */
+  --shadow-contextual-1: var(--shadow-1);
+  --shadow-contextual-2: var(--shadow-2);
+  --shadow-contextual-3: var(--shadow-3);
+
+  /* Touch feedback */
+  --tap-highlight: var(--color-tap-highlight);
+
   color-scheme: light;
 }
 
-/* Dark Theme */
+/* Dark Theme — Enhanced with contextual variables */
 html.dark .theme-container {
   --bg-color: var(--color-bg-dark);
   --bg-elevated: var(--color-bg-elevated-dark);
@@ -123,6 +140,21 @@ html.dark .theme-container {
   --border-color: var(--color-border-dark);
   --code-bg: var(--color-code-bg-dark);
   --accent-subtle: var(--color-accent-subtle-dark);
+  --secondary-subtle: var(--color-secondary-subtle-dark);
+
+  /* Contextual neutral backgrounds */
+  --neutral-50: var(--color-neutral-50-dark);
+  --neutral-100: var(--color-neutral-100-dark);
+  --neutral-150: var(--color-neutral-150-dark);
+
+  /* Contextual shadows (darker for dark mode) */
+  --shadow-contextual-1: var(--shadow-dark-1);
+  --shadow-contextual-2: var(--shadow-dark-2);
+  --shadow-contextual-3: var(--shadow-dark-3);
+
+  /* Touch feedback */
+  --tap-highlight: var(--color-tap-highlight-dark);
+
   color-scheme: dark;
 }
 
@@ -135,9 +167,13 @@ html.dark .theme-container {
     --text-secondary: var(--color-text-secondary-light);
     --text-muted: var(--color-text-muted-light);
     --border-color: var(--color-border-light);
-    --border-subtle: var(--color-border-subtle-light);
     --code-bg: var(--color-code-bg-light);
     --accent-subtle: var(--color-accent-subtle);
+    --neutral-50: var(--color-neutral-50-light);
+    --neutral-100: var(--color-neutral-100-light);
+    --shadow-contextual-1: var(--shadow-1);
+    --shadow-contextual-2: var(--shadow-2);
+    --tap-highlight: var(--color-tap-highlight);
   }
 }
 
@@ -149,9 +185,13 @@ html.dark .theme-container {
     --text-secondary: var(--color-text-secondary-dark);
     --text-muted: var(--color-text-muted-dark);
     --border-color: var(--color-border-dark);
-    --border-subtle: var(--color-border-subtle-dark);
     --code-bg: var(--color-code-bg-dark);
     --accent-subtle: var(--color-accent-subtle-dark);
+    --neutral-50: var(--color-neutral-50-dark);
+    --neutral-100: var(--color-neutral-100-dark);
+    --shadow-contextual-1: var(--shadow-dark-1);
+    --shadow-contextual-2: var(--shadow-dark-2);
+    --tap-highlight: var(--color-tap-highlight-dark);
   }
 }
 
@@ -185,25 +225,15 @@ html.dark .theme-container {
 
 .main {
   margin-top: var(--space-16);
-  animation: fadeInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) both;
+  animation: fadeInUp 0.5s var(--ease-out-expo) both;
   animation-delay: 0.1s;
 }
 
 /* ─────────────────────────────────────────────────────────────────────────────
-   ANIMATIONS
+   ANIMATIONS — Comprehensive animation library
    ───────────────────────────────────────────────────────────────────────────── */
 
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
+/* Fade Animations */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -213,6 +243,153 @@ html.dark .theme-container {
   }
 }
 
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUpSmall {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+/* Scale Animations */
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes scaleInUp {
+  from {
+    opacity: 0;
+    transform: scale(0.97) translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Pop/Spring Animations */
+@keyframes popIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  70% {
+    transform: scale(1.02);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes themeIconPop {
+  0% {
+    transform: scale(0.5) rotate(-20deg);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.08) rotate(5deg);
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
+}
+
+/* Micro-interaction Animations */
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Slide Animations */
 @keyframes slideInFromLeft {
   from {
     opacity: 0;
@@ -224,7 +401,65 @@ html.dark .theme-container {
   }
 }
 
-/* Reduced motion preference */
+@keyframes slideInFromRight {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   MOBILE TOUCH OPTIMIZATIONS
+   ───────────────────────────────────────────────────────────────────────────── */
+
+@media (max-width: 767px) {
+  html {
+    /* Prevent tap highlight on iOS */
+    -webkit-tap-highlight-color: transparent;
+
+    /* Controlled overscroll */
+    overscroll-behavior-y: contain;
+  }
+
+  body {
+    /* Enable momentum scrolling on iOS */
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Improve touch responsiveness */
+  button,
+  a,
+  [role="button"],
+  input,
+  select,
+  textarea {
+    touch-action: manipulation;
+  }
+
+  /* Faster main content animation on mobile */
+  .main {
+    animation-duration: 0.4s;
+    animation-delay: 0.05s;
+  }
+
+  /* Hide scrollbars on mobile for cleaner look */
+  ::-webkit-scrollbar {
+    display: none;
+  }
+
+  * {
+    scrollbar-width: none;
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   REDUCED MOTION — Accessibility
+   ───────────────────────────────────────────────────────────────────────────── */
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -232,6 +467,7 @@ html.dark .theme-container {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }
 
@@ -245,23 +481,32 @@ html.dark .theme-container {
 }
 
 /* ─────────────────────────────────────────────────────────────────────────────
-   SCROLLBAR (Webkit)
+   SCROLLBAR (Desktop Webkit) — Refined styling
    ───────────────────────────────────────────────────────────────────────────── */
 
-::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-}
+@media (min-width: 768px) {
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
 
-::-webkit-scrollbar-track {
-  background: transparent;
-}
+  ::-webkit-scrollbar-track {
+    background: transparent;
+    border-radius: var(--radius-full);
+  }
 
-::-webkit-scrollbar-thumb {
-  background: var(--text-muted);
-  border-radius: var(--radius-full);
-}
+  ::-webkit-scrollbar-thumb {
+    background: var(--text-muted);
+    border-radius: var(--radius-full);
+    border: 2px solid var(--bg-color);
+    transition: background var(--duration-fast) var(--ease-out);
+  }
 
-::-webkit-scrollbar-thumb:hover {
-  background: var(--text-secondary);
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--text-secondary);
+  }
+
+  ::-webkit-scrollbar-thumb:active {
+    background: var(--color-accent);
+  }
 }
